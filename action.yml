@@ -14,6 +14,9 @@ inputs:
   cloudflared_secret:
       description: 'Cloudflared Service Token Secret'
       required: true
+defaults:
+  run:
+    shell: bash
 runs:
   using: "composite"
   steps:
