@@ -4,7 +4,9 @@ on:
   workflow_dispatch:
 env:
   DOCKER_HOST: "ssh://${{ vars.SSH_REMOTE_USER }}@${{ vars.SSH_REMOTE_HOST }}"
-
+defaults:
+  run:
+    shell: bash
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -12,4 +14,6 @@ jobs:
       - name: Action
         uses: RedNoodlesOrg/rednet-actions-cloudflared-ssh@main
       - name: Docker
-        run: docker info
+        id: docker
+        run: |
+          docker ps
