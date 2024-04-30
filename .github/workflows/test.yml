@@ -2,6 +2,8 @@ name: Test Action
 
 on:
   workflow_dispatch:
+env:
+  DOCKER_HOST: "ssh://${{ vars.SSH_REMOTE_USER }}@${{ vars.SSH_REMOTE_HOST }}"
 
 jobs:
   test:
@@ -9,3 +11,5 @@ jobs:
     steps:
       - name: Action
         uses: RedNoodlesOrg/rednet-actions-cloudflared-ssh@main
+      - name: Docker
+        run: docker info
