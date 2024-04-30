@@ -22,12 +22,12 @@ runs:
       shell: bash
       run: |
         mkdir -p ~/.ssh
-        echo "Host $SSH_REMOTE_HOST" >> ~/.ssh/config
+        echo "Host ${SSH_REMOTE_HOST}" >> ~/.ssh/config
         echo "  IdentityAgent none" >> ~/.ssh/config
         echo "  IdentityFile ~/.ssh/id_ed25519" >> ~/.ssh/config
         echo "  StrictHostKeyChecking no" >> ~/.ssh/config
         echo "  UserKnownHostsFile /dev/null" >> ~/.ssh/config
-        echo "  ProxyCommand /usr/local/bin/cloudflared access ssh --id $CLOUDFLARED_ID --secret $CLOUDFLARED_SECRET --hostname %h" >> ~/.ssh/config
+        echo "  ProxyCommand /usr/local/bin/cloudflared access ssh --id ${CLOUDFLARED_ID} --secret ${CLOUDFLARED_SECRET} --hostname %h" >> ~/.ssh/config
         chmod 600 ~/.ssh/config
         chmod 700 ~/.ssh
         
