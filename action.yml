@@ -14,19 +14,18 @@ inputs:
   cloudflared_secret:
       description: 'Cloudflared Service Token Secret'
       required: true
-defaults:
-  run:
-    shell: bash
 runs:
   using: "composite"
   steps:
     - name: Install cloudflare
+      shell: bash
       run: |
         curl -L "https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64" -o cloudflared
         sudo chmod +x cloudflared
         sudo mv cloudflared /usr/local/bin/cloudflared
 
     - name: Set up SSH Key
+      shell: bash
       env:
         SSH_PRIVATE_KEY: ${{ inputs.ssh_private_key }}
       run: |
@@ -35,6 +34,7 @@ runs:
         chmod 600 ~/.ssh/id_ed25519
 
     - name: Setup SSH Config
+      shell: bash
       run: |
         mkdir -p ~/.ssh
         echo "Host ${{ inputs.ssh_remote_host }}" >> ~/.ssh/config
